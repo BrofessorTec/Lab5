@@ -7,3 +7,4 @@ Moved this code to an async task and called it from main, and this looks like th
 I think some of this issue is caused from me trying to use a trycatch incorrectly. Will refactor this.<br>
 Made some progress, but the output is still not in the format that I expected so I am not getting managable data returned.<br>
 Having an issue where the "await" is needed but my main is not an async task, might need to break this into a class?<br>
+It looks like the main issue is that I am getting JSON response when I enter it in a browser, but getting HTML response data when I try it from the program and not sure how to reformat this.<br>
