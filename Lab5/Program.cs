@@ -1,6 +1,9 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Lab5
 {
@@ -72,6 +75,28 @@ namespace Lab5
 
                     // example url with player name "erik"
                     // https://api.chess.com/pub/player/erik
+                    /*
+                    URL pattern: https://api.chess.com/pub/player/{username}
+                    Data format:
+
+                    {
+                        "@id": "URL", // the location of this profile (always self-referencing)
+                        "url": "URL", // the chess.com user's profile page (the username is displayed with the original letter case)
+                        "username": "string", // the username of this player
+                        "player_id": 41, // the non-changing Chess.com ID of this player
+                         "title": "string", // (optional) abbreviation of chess title, if any
+                         "status": "string", // account status: closed, closed:fair_play_violations, basic, premium, mod, staff
+                          "name": "string", // (optional) the personal first and last name
+                        "avatar": "URL", // (optional) URL of a 200x200 image
+                         "location": "string", // (optional) the city or location
+                         "country": "URL", // API location of this player's country's profile
+                         "joined": 1178556600, // timestamp of registration on Chess.com
+                         "last_online": 1500661803, // timestamp of the most recent login
+                         "followers": 17 // the number of players tracking this player's activity
+                         "is_streamer": "boolean", //if the member is a Chess.com streamer
+                         "twitch_url": "Twitch.tv URL",
+                         "fide": "integer" // FIDE rating 
+                    } */
 
 
                     Console.Clear();
@@ -82,12 +107,17 @@ namespace Lab5
 
                     // url code here
                     string apiUrl = $"https://api.chess.com/pub/player/{choiceProfile}";
+                    Console.WriteLine("Your url is: " + apiUrl);
 
                     GetTask(apiUrl);
                     Console.ReadLine();
 
 
-                    APICalls apiCall = new APICalls();
+                    // testing with a new API call for all players with a certain title i.e. GM
+                    GetTask("https://api.chess.com/pub/titled/GM");
+                    Console.ReadLine();
+
+                    //APICalls apiCall = new APICalls();
 
                     // cannot access the async task in this class..?
 
