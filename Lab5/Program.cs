@@ -18,6 +18,8 @@ namespace Lab5
                     // Make a GET request using the url
                 HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
 
+
+                /*
                     // Check response as a string
                 string responseData = await response.Content.ReadAsStringAsync();
 
@@ -26,11 +28,32 @@ namespace Lab5
                 // Process the data but a string[] does not seem to be working
                 string[] info = JsonSerializer.Deserialize<string[]>(responseData);
 
-                    /*foreach (string s in info)
-                    {
-                    await Console.Out.WriteLineAsync(s);
-                    }*/
+                /*foreach (string s in info)
+                {
+                await Console.Out.WriteLineAsync(s);
                 }
+
+                */
+
+
+                string jsonString = await response.Content.ReadAsStringAsync();
+
+                // Deserialize JSON string to a C# object
+                JSONInfo jsonData = JsonSerializer.Deserialize<JSONInfo>(jsonString);
+
+                // Access the list of strings from the object
+                List<string> dataList = jsonData.Data;
+
+                // Output the list of strings
+                Console.WriteLine("Data List:");
+                foreach (string s in dataList)
+                {
+                    Console.WriteLine(s);
+                }
+
+
+
+            }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Exception: {ex.Message}");
