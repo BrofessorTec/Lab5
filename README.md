@@ -9,3 +9,4 @@ Made some progress, but the output is still not in the format that I expected so
 Having an issue where the "await" is needed but my main is not an async task, might need to break this into a class?<br>
 It looks like the main issue is that I am getting JSON response when I enter it in a browser, but getting HTML response data when I try it from the program and not sure how to reformat this.<br>
 Trying a different API GET call for players with a certain title looks like it is returning JSON data correctly, but both calls are still causing an Exception that I do not understand. <br>
+Tried creating a JSONInfo class that will allow separation between the header and the actual data since this seemed like it was causing an issue, but still not fixed <br>
