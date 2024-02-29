@@ -11,3 +11,6 @@ It looks like the main issue is that I am getting JSON response when I enter it 
 Trying a different API GET call for players with a certain title looks like it is returning JSON data correctly, but both calls are still causing an Exception that I do not understand. <br>
 Tried creating a JSONInfo class that will allow separation between the header and the actual data since this seemed like it was causing an issue, but still not fixed <br>
 It looks like the Player Get request is being forbidden for some reason.... willl have to repurpose this project to another functionality. <br>
+Changed the application to pick 2 players from an array that was retrieved for a given Title and have them battle. Because I cannot access their profile information though I am unable to get their chess rating from the API... that was the whole point of this really. Their rating could be used to simulate who would be more likely to win in a game. <br>
+Functionality is definitely lacking as is. Will see if there is a way to resolve the issue with the Forbidden GET request for the profiles to fix this in the future.<br>
+Added a little more polish and an error picture showing the forbidden reponse to the repository. <br>

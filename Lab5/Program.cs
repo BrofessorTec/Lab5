@@ -143,8 +143,51 @@ namespace Lab5
                         string player2Spot = titledPlayers[player2];
 
                         Console.Clear();
+                        Console.WriteLine($"There are {titledPlayers.Length} {choice.ToUpper()} players!");
                         Console.WriteLine($"The match will be between {player1Spot} and {player2Spot}!");
+                        Thread.Sleep(1000);
+                        Console.WriteLine("\nAnd the winner is.....");
+                        Thread.Sleep(1500);
+                        if (choice.ToUpper() == "GM")
+                        {
+                            if(player1Spot == "magnuscarlsen")
+                        {
+                                Console.WriteLine($"{player1Spot}!!!!");
+                            }
+                            else if (player1Spot == "magnuscarlsen")
+                            {
+                                Console.WriteLine($"{player2Spot}!!!!");
+                            }
+                            else if (random.Next(2) == 0)
+                            {
+                                Console.WriteLine($"{player1Spot}!!!!");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{player2Spot}!!!!");
+                            }
+                        }
+                        else if (random.Next(2) == 0)
+                        {
+                            Console.WriteLine($"{player1Spot}!!!!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{player2Spot}!!!!");
+                        }
+
+                        Console.WriteLine("\nEnter any key to play again.");
                         Console.ReadLine();
+
+
+                        /*  This request was also forbidden. Included an error picture into the github files now :(
+                        Task<int> callPlayer1Rating = apiCall.GetPlayerRating($"https://api.chess.com/pub/player/{player1Spot}/stats");
+                        int player1Rating = await callPlayer1Rating;
+                        Task<int> callPlayer2Rating = apiCall.GetPlayerRating($"https://api.chess.com/pub/player/{player2Spot}/stats");
+                        int player2Rating = await callPlayer2Rating;
+                        Console.WriteLine($"The match will be between {player1Spot} rated {player1Rating}and {player2Spot} rated {player2Rating}!");
+                        */
+
 
                     }
                     else

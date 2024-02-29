@@ -71,6 +71,27 @@ namespace Lab5
             return players;
         }
 
+
+        public async Task<int> GetPlayerRating(string apiUrl)
+        {
+            HttpClient httpClient = new HttpClient();
+            // Make a GET request using the url
+            HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
+
+            // Check response as a string
+            string responseData = await response.Content.ReadAsStringAsync();
+
+            //await Console.Out.WriteLineAsync(responseData);  //this is a debugging check
+
+            // Process the data but a string[] does not seem to be working
+            //string[] info = JsonSerializer.Deserialize<string[]>(responseData);
+
+            //Player playerInfo = new Player(int.Parse(info[0]), info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8], info[9], info[10], info[11], info[12]);
+
+            return -1;
+        }
+
+
     }
 
     
