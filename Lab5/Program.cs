@@ -9,9 +9,10 @@ namespace Lab5
 {
     internal class Program
     {
-
-        public static async Task GetTask(string apiUrl)
+        /*
+        public static async Task<string[]> GetTask(string apiUrl)
         {
+            string[] info = [];
             HttpClient httpClient = new HttpClient();
                 try
                 {
@@ -19,23 +20,24 @@ namespace Lab5
                 HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
 
 
-                /*
+                
                     // Check response as a string
                 string responseData = await response.Content.ReadAsStringAsync();
 
-                await Console.Out.WriteLineAsync(responseData);  //this is a debugging check
+                //await Console.Out.WriteLineAsync(responseData);  //this is a debugging check
 
                 // Process the data but a string[] does not seem to be working
-                string[] info = JsonSerializer.Deserialize<string[]>(responseData);
+                info = JsonSerializer.Deserialize<string[]>(responseData);
+                
 
-                /*foreach (string s in info)
-                {
-                await Console.Out.WriteLineAsync(s);
-                }
+                //foreach (string s in info)
+                //{
+                //await Console.Out.WriteLineAsync(s);
+                //}
 
-                */
+                return info;
 
-
+                /*
                 string jsonString = await response.Content.ReadAsStringAsync();
 
                 // Deserialize JSON string to a C# object
@@ -50,17 +52,21 @@ namespace Lab5
                 {
                     Console.WriteLine(s);
                 }
+                */
+        /*
 
-
-
+                //return info;
             }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Exception: {ex.Message}");
                 }
-        }
 
-        static void Main(string[] args)
+            return info;
+        }
+*/
+
+        static async Task Main()
         {
             bool exit = false;
 
@@ -74,16 +80,7 @@ namespace Lab5
                 //string choice = Console.ReadLine().ToLower();
                 string choiceNum = Console.ReadLine();
 
-
-                // if a rating is entered:
                 if (choiceNum == "1")
-                {
-                    Console.Clear();
-                    Console.WriteLine("What rating would you like to use?");
-                    int choiceRating = int.Parse(Console.ReadLine());
-                    Console.WriteLine($"Your rating is {choiceRating}.");
-                }
-                else if (choiceNum == "2")
                 {
                     // if a profile string is entered
                     // use player profile here
@@ -122,35 +119,69 @@ namespace Lab5
                     } */
 
 
+                    APICalls apiCall = new APICalls();
+
                     Console.Clear();
-                    Console.WriteLine("What is your profile name?");
-                    string choiceProfile = Console.ReadLine();
-                    Console.WriteLine($"Your profile name is {choiceProfile}");
+
+                    /* this code is not working as of now
+Console.WriteLine("What is your profile name?");
+string choiceProfile = Console.ReadLine().ToLower();
+Console.WriteLine($"Your profile name is {choiceProfile}");
 
 
-                    // url code here
-                    string apiUrl = $"https://api.chess.com/pub/player/{choiceProfile}";
-                    Console.WriteLine("Your url is: " + apiUrl);
+// url code here
+string apiUrl1 = $"https://api.chess.com/pub/player/{choiceProfile}";
+Console.WriteLine("Your url is: " + apiUrl1);
 
-                    GetTask(apiUrl);
-                    Console.ReadLine();
+
+Task<Player> playerInfo= apiCall.GetPlayerProfile(apiUrl1);
+
+Player player = await playerInfo;
+await Console.Out.WriteLineAsync($"Player username is {player.Name}");
+*/
+
+                    // another example url for player profile is 
+                    // https://api.chess.com/pub/player/hikaru
+
+
+                    //GetTask(apiUrl);
+                    //string[] info = await GetTask(apiUrl);
+
+                    //Console.ReadLine();
 
 
                     // testing with a new API call for all players with a certain title i.e. GM
-                    GetTask("https://api.chess.com/pub/titled/GM");
-                    Console.ReadLine();
+                    //GetTask("https://api.chess.com/pub/titled/GM");
+                    //Console.ReadLine();
 
-                    //APICalls apiCall = new APICalls();
 
+
+                    Task<string[]> callResult = apiCall.GetTitledPlayers("https://api.chess.com/pub/titled/GM");
+                    string[] titledPlayers = await callResult;
+                    //Player playerInfo = apiCall.GetPlayerProfile(apiUrl);
                     // cannot access the async task in this class..?
 
                     //apiCall
 
+                    foreach (string s in titledPlayers)
+                    {
+                        Console.WriteLine(s);
+                    }
 
+
+                    Console.ReadLine();
 
                     // get the player's rating here
 
 
+                }
+                // if a rating is entered:
+                else if (choiceNum == "2")
+                {
+                    Console.Clear();
+                    Console.WriteLine("What rating would you like to use?");
+                    int choiceRating = int.Parse(Console.ReadLine());
+                    Console.WriteLine($"Your rating is {choiceRating}.");
                 }
                 else
                 {
